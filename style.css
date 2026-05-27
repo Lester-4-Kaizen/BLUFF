@@ -949,6 +949,7 @@ select.text-input {
   transition: border-color 0.2s;
   background: none;
   -webkit-appearance: none;
+  appearance: none;
 }
 .clue-input:focus {
   border-bottom-color: var(--gold);
