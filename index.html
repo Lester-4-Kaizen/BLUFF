@@ -2,109 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Bluff — The Deduction Game</title>
     <link rel="stylesheet" href="style.css" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🃏</text></svg>"
-    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🃏</text></svg>" />
   </head>
   <body>
-    <!-- ═══════════════════════════════════════════════════════════════════════════
+
+    <!-- ══════════════════════════════════════════════════════════════════════
      SCREEN 1 — LANDING
-════════════════════════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="screen-landing" class="screen">
       <div class="landing-beam"></div>
       <div class="landing-beam landing-beam-2"></div>
 
-      <div style="position: absolute; top: 20px; right: 20px; z-index: 10">
-        <button
-          id="theme-toggle"
-          class="btn btn--ghost"
-          style="
-            width: auto;
-            padding: 8px 14px;
-            font-size: 0.6rem;
-            max-width: none;
-          "
-          onclick="toggleTheme()"
-        >
-          ☀ Light
-        </button>
+      <div style="position:absolute;top:20px;right:20px;z-index:10">
+        <button id="theme-toggle" class="btn btn--ghost"
+          style="width:auto;padding:8px 14px;font-size:0.6rem;max-width:none;"
+          onclick="toggleTheme()">☀ Light</button>
       </div>
 
       <div class="spacer"></div>
 
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-          text-align: center;
-          margin-bottom: 40px;
-        "
-      >
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;margin-bottom:40px;">
         <div class="landing-eyecon">🃏</div>
         <h1 class="title-main">Bluff</h1>
         <div class="landing-dividers">— The Deduction Game —</div>
-        <p class="title-sub">
-          One liar. Everyone else knows the truth.<br />Find them before it's
-          too late.
-        </p>
+        <p class="title-sub">One liar. Everyone else knows the truth.<br />Find them before it's too late.</p>
       </div>
 
       <div class="landing-actions">
-        <button class="btn btn--primary" onclick="initSetup()">
-          Begin Game
-        </button>
-        <button
-          class="btn btn--outline"
-          id="btn-view-scores"
-          onclick="goHome()"
-        >
-          View Scores
-        </button>
-        <button class="btn btn--ghost" id="btn-history" onclick="showHistory()">
-          📋 &nbsp;Round History
-        </button>
+        <button class="btn btn--primary" onclick="initSetup()">Begin Game</button>
+        <button class="btn btn--outline" id="btn-view-scores" onclick="goHome()">View Scores</button>
+        <button class="btn btn--ghost" id="btn-history" onclick="showHistory()">📋 &nbsp;Round History</button>
       </div>
 
       <div class="spacer"></div>
-
       <p class="landing-credit">A social deduction game</p>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════════
-     SCREEN 1.5 — LOADING
-════════════════════════════════════════════════════════════════════════════ -->
-    <div
-      id="screen-loading"
-      class="screen"
-      style="justify-content: center; align-items: center; gap: 24px"
-    >
-      <div class="loading-spinner"></div>
-      <div style="text-align: center">
-        <div
-          class="section-label"
-          style="text-align: center; margin-bottom: 6px"
-        >
-          Preparing Round
-        </div>
-        <p
-          id="loading-msg"
-          style="font-size: 0.8rem; color: var(--muted); font-style: italic"
-        ></p>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════════════
      SCREEN 2 — SETUP
-════════════════════════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="screen-setup" class="screen">
       <div class="screen-header">
         <div class="section-label">Setup</div>
@@ -119,22 +58,8 @@
           <div class="stepper-val" id="player-count-display">4</div>
           <button class="stepper-btn" onclick="adjustCount(1)">+</button>
         </div>
-        <input
-          type="number"
-          id="player-count"
-          value="4"
-          min="3"
-          max="12"
-          style="display: none"
-        />
-        <p
-          style="
-            margin-top: 8px;
-            font-size: 0.62rem;
-            color: var(--muted);
-            font-style: italic;
-          "
-        >
+        <input type="number" id="player-count" value="4" min="3" max="12" style="display:none" />
+        <p style="margin-top:8px;font-size:0.62rem;color:var(--muted);font-style:italic;">
           3–6 players: 1 imposter &nbsp;·&nbsp; 7–9: 2 &nbsp;·&nbsp; 10–12: 3
         </p>
       </div>
@@ -148,8 +73,8 @@
       <!-- Category + Timer -->
       <div class="card">
         <div class="section-label">Category</div>
-        <div class="input-row">
-          <select class="text-input" id="category-select">
+        <div class="input-row" style="flex-direction:row;gap:8px;align-items:stretch;">
+          <select class="text-input" id="category-select" style="flex:1;">
             <option value="🐾 Animals">🐾 Animals</option>
             <option value="🍕 Food &amp; Drinks">🍕 Food &amp; Drinks</option>
             <option value="⚽ Sports">⚽ Sports</option>
@@ -166,6 +91,9 @@
             <option value="🌃 Cities">🌃 Cities</option>
             <option value="🧠 Emotions">🧠 Emotions</option>
           </select>
+          <button class="btn btn--ghost" onclick="pickRandomCategory()"
+            style="width:auto;padding:10px 14px;font-size:0.65rem;max-width:none;flex-shrink:0;"
+            title="Pick a random category">🎲</button>
         </div>
 
         <div class="section-label mt-md">Clue Timer</div>
@@ -183,38 +111,24 @@
       <div class="card">
         <div class="section-label">Voting Method</div>
         <div class="vote-mode-toggle">
-          <div
-            class="vote-mode-option active"
-            data-mode="digital"
-            onclick="setVoteMode('digital')"
-          >
+          <div class="vote-mode-option active" data-mode="digital" onclick="setVoteMode('digital')">
             <div class="vote-mode-title">📱 Digital</div>
-            <div class="vote-mode-desc">
-              Each player votes secretly on this device
-            </div>
+            <div class="vote-mode-desc">Each player votes secretly on this device</div>
           </div>
-          <div
-            class="vote-mode-option"
-            data-mode="inperson"
-            onclick="setVoteMode('inperson')"
-          >
+          <div class="vote-mode-option" data-mode="inperson" onclick="setVoteMode('inperson')">
             <div class="vote-mode-title">🗣 In Person</div>
-            <div class="vote-mode-desc">
-              Group votes out loud, enter the result manually
-            </div>
+            <div class="vote-mode-desc">Group votes out loud, enter result manually</div>
           </div>
         </div>
       </div>
 
-      <button class="btn btn--primary" onclick="startGame()">
-        Start Round
-      </button>
+      <button class="btn btn--primary" onclick="startGame()">Start Round</button>
       <button class="btn btn--ghost" onclick="goHome()">← Back</button>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════════════
      SCREEN 3 — REVEAL
-════════════════════════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="screen-reveal" class="screen">
       <div class="spacer"></div>
 
@@ -226,7 +140,6 @@
 
       <div class="flip-wrapper" onclick="tapCard()">
         <div class="flip-card" id="reveal-card">
-          <!-- Front — sealed dossier -->
           <div class="flip-face card-front">
             <div class="dossier-stamp">Classified</div>
             <div class="dossier-icon">📁</div>
@@ -237,8 +150,6 @@
               <div class="dossier-line"></div>
             </div>
           </div>
-
-          <!-- Back — filled by JS -->
           <div class="flip-face card-back" id="card-back"></div>
         </div>
       </div>
@@ -247,23 +158,17 @@
         <span>👆</span> tap the dossier
       </div>
 
-      <button
-        class="btn btn--primary"
-        id="reveal-next-btn"
-        style="display: none; max-width: 260px"
-        onclick="nextReveal()"
-      >
-        Done →
-      </button>
+      <button class="btn btn--primary" id="reveal-next-btn"
+        style="display:none;max-width:260px;" onclick="nextReveal()">Done →</button>
 
       <div class="spacer"></div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════════════
      SCREEN 4 — CLUE PHASE
-════════════════════════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="screen-clue" class="screen">
-      <div class="section-label" style="text-align: center">Clue Phase</div>
+      <div class="section-label" style="text-align:center">Clue Phase</div>
 
       <!-- Timer -->
       <div class="timer-wrapper">
@@ -275,55 +180,38 @@
       </div>
 
       <p class="clue-instruction">
-        Each player gives <em>one word clue</em> related to the secret word.<br />
-        The imposter has no idea what it is — can they fake it?
+        Each player gives <em>one word clue</em>.<br />
+        Type it below as you go — review them at the end.
       </p>
 
       <div class="clue-list" id="clue-list"></div>
 
       <div class="spacer"></div>
 
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          width: 100%;
-          max-width: 480px;
-        "
-      >
-        <!-- Imposter buzz-in -->
-        <button class="buzz-btn" onclick="openBuzzModal()">
-          🔔 &nbsp;Imposter — Guess the Word
-        </button>
-        <button class="btn btn--outline" onclick="skipToVote()">
-          Go to Vote →
-        </button>
+      <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:480px;">
+        <div style="display:flex;gap:8px;">
+          <button class="buzz-btn" style="flex:1;" onclick="openBuzzModal()">
+            🔔 &nbsp;Imposter — Guess the Word
+          </button>
+          <button id="pause-btn" class="btn btn--ghost"
+            style="width:auto;padding:10px 16px;font-size:0.62rem;max-width:none;flex-shrink:0;"
+            onclick="toggleTimer()">⏸ Pause</button>
+        </div>
+        <button class="btn btn--outline" onclick="skipToVote()">Go to Vote →</button>
         <button class="btn btn--ghost" onclick="goHome()">Abandon Round</button>
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════════════
      SCREEN 5 — DIGITAL VOTE
-════════════════════════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="screen-vote" class="screen">
       <div class="spacer"></div>
 
       <div class="vote-header">
-        <p
-          class="reveal-progress-text"
-          id="vote-progress"
-          style="
-            font-size: 0.62rem;
-            color: var(--muted);
-            letter-spacing: 0.15em;
-          "
-        >
-          1 of 4
-        </p>
-        <p class="section-label" style="text-align: center; margin-top: 8px">
-          Cast Your Vote
-        </p>
+        <p class="reveal-progress-text" id="vote-progress"
+          style="font-size:0.62rem;color:var(--muted);letter-spacing:0.15em;">1 of 4</p>
+        <p class="section-label" style="text-align:center;margin-top:8px;">Cast Your Vote</p>
         <h2 class="vote-player-name" id="vote-name">Player</h2>
         <p class="vote-sub">Who is the imposter?</p>
       </div>
@@ -336,88 +224,69 @@
         <p class="vote-confirmed-sub">Pass the device to the next player</p>
       </div>
 
-      <button
-        class="btn btn--outline"
-        id="vote-next-btn"
-        style="display: none"
-        onclick="nextVote()"
-      >
+      <button class="btn btn--outline" id="vote-next-btn" style="display:none;" onclick="nextVote()">
         Next →
       </button>
 
       <div class="spacer"></div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════════════
      SCREEN 5B — IN-PERSON VOTING
-════════════════════════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="screen-inperson" class="screen">
       <div class="spacer"></div>
 
-      <div class="section-label" style="text-align: center">In-Person Vote</div>
+      <div class="section-label" style="text-align:center">In-Person Vote</div>
       <h2 class="inperson-title">Who did the group vote out?</h2>
-      <p class="inperson-sub">
-        Hold a show of hands or count aloud, then record the result below.
-      </p>
+      <p class="inperson-sub">Hold a show of hands or count aloud, then record the result below.</p>
 
       <div class="inperson-choices">
-        <button
-          class="inperson-btn inperson-btn--civilians"
-          onclick="inPersonResult(true)"
-        >
+        <button class="inperson-btn inperson-btn--civilians" onclick="inPersonResult(true)">
           <span>✓ Imposter Was Caught</span>
-          <span class="inperson-btn-sub"
-            >The group correctly identified the imposter</span
-          >
+          <span class="inperson-btn-sub">The group correctly identified the imposter</span>
         </button>
-        <button
-          class="inperson-btn inperson-btn--imposter"
-          onclick="inPersonResult(false)"
-        >
+        <button class="inperson-btn inperson-btn--imposter" onclick="inPersonResult(false)">
           <span>✗ Imposter Survived</span>
-          <span class="inperson-btn-sub"
-            >The group voted out the wrong person</span
-          >
+          <span class="inperson-btn-sub">The group voted out the wrong person</span>
         </button>
       </div>
 
       <div class="spacer"></div>
 
-      <button
-        class="btn btn--ghost"
-        onclick="skipToVote()"
-        style="max-width: 320px"
-      >
+      <button class="btn btn--ghost" onclick="skipToVote()" style="max-width:320px;">
         ← Switch to Digital Voting
       </button>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════════════
      SCREEN 6 — RESULTS
-════════════════════════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="screen-results" class="screen">
-      <!-- Outcome -->
       <div class="result-banner" id="result-banner">
-        <div class="result-banner-title" id="result-banner-title">
-          Civilians Win
-        </div>
-        <div class="result-banner-sub" id="result-banner-sub">
-          The imposter has been exposed.
-        </div>
+        <div class="result-banner-title" id="result-banner-title">Civilians Win</div>
+        <div class="result-banner-sub" id="result-banner-sub">The imposter has been exposed.</div>
       </div>
 
-      <!-- Chips -->
+      <!-- Word + Imposter chips -->
       <div class="result-chips">
         <div class="result-chip">
           <span class="result-chip-label">Word</span>
-          <span class="result-chip-value"
-            ><strong id="result-word">—</strong></span
-          >
+          <span class="result-chip-value"><strong id="result-word">—</strong></span>
         </div>
         <div class="result-chip">
           <span class="result-chip-label">Imposter</span>
           <span class="result-chip-value" id="result-imposters">—</span>
         </div>
+      </div>
+
+      <!-- Imposter's cover words reveal -->
+      <div class="card max-w" id="result-hints-section" style="padding:16px 20px;"></div>
+
+      <!-- Clue replay (shown if any clues were typed) -->
+      <div class="card max-w" id="result-clues-section" style="display:none;">
+        <div class="section-label">Round Clues</div>
+        <div id="result-clues-list" style="display:flex;flex-direction:column;gap:5px;margin-top:4px;"></div>
       </div>
 
       <!-- Vote breakdown (digital only) -->
@@ -428,117 +297,78 @@
 
       <!-- Scoreboard -->
       <div class="card max-w">
-        <div class="section-label">
-          Scoreboard — Round <span id="round-num"></span>
-        </div>
+        <div class="section-label">Scoreboard — Round <span id="round-num"></span></div>
         <div class="score-list" id="score-list"></div>
         <p class="score-note">
-          Civilians catch imposter → +1 pt each &nbsp;·&nbsp; Imposter survives
-          → +2 pts &nbsp;·&nbsp; Imposter buzzes correct → +3 pts
+          Civilians catch imposter → +1 pt each &nbsp;·&nbsp; Imposter survives → +2 pts &nbsp;·&nbsp; Imposter buzzes correct → +3 pts
         </p>
       </div>
 
       <div class="result-actions">
-        <button class="btn btn--primary" onclick="playAgain()">
-          Play Again
-        </button>
-        <button class="btn btn--outline" onclick="showHistory()">
-          📋 &nbsp;Round History
-        </button>
+        <button class="btn btn--primary" onclick="playAgain()">Play Again</button>
+        <button class="btn btn--outline" onclick="showHistory()">📋 &nbsp;Round History</button>
         <button class="btn btn--ghost" onclick="goHome()">Main Menu</button>
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════════════
      SCREEN 7 — ROUND HISTORY
-════════════════════════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════════════════ -->
     <div id="screen-history" class="screen">
       <div class="screen-header">
         <div class="section-label">Session Log</div>
         <div class="screen-title">Round History</div>
       </div>
 
-      <div
-        id="history-list"
-        style="
-          width: 100%;
-          max-width: 480px;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        "
-      ></div>
+      <div id="history-list"
+        style="width:100%;max-width:480px;display:flex;flex-direction:column;gap:12px;"></div>
 
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          width: 100%;
-          max-width: 480px;
-          margin-top: 8px;
-        "
-      >
+      <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:480px;margin-top:8px;">
         <button class="btn btn--ghost" onclick="goHome()">← Main Menu</button>
-        <button
-          class="btn btn--danger"
-          onclick="clearHistory()"
-          style="font-size: 0.62rem"
-        >
+        <button class="btn btn--danger" onclick="clearHistory()" style="font-size:0.62rem;">
           Clear History
         </button>
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════════════════
      BUZZ-IN MODAL
-════════════════════════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════════════════ -->
     <div class="modal-overlay" id="buzz-modal">
       <div class="modal">
         <div class="modal-title">Buzz In</div>
         <p class="modal-sub">
-          If you're the imposter and you think you know the word, guess it now.
-          Correct → you win +3 pts. Wrong → civilians win automatically.
+          Think you know the word? Guess it now.<br/>
+          Correct → +3 pts and you win. Wrong → civilians win automatically.
         </p>
-
         <div class="input-row">
           <label class="input-label">Your guess</label>
-          <input
-            class="text-input"
-            id="buzz-input"
-            type="text"
+          <input class="text-input" id="buzz-input" type="text"
             placeholder="Type the word…"
-            autocomplete="off"
-            autocorrect="off"
-            spellcheck="false"
-            onkeydown="if (event.key === 'Enter') submitBuzz();"
-          />
+            autocomplete="off" autocorrect="off" spellcheck="false"
+            onkeydown="if(event.key==='Enter') submitBuzz();" />
         </div>
-
         <div class="modal-actions">
-          <button class="btn btn--danger" onclick="submitBuzz()">
-            Submit Guess
-          </button>
-          <button class="btn btn--ghost" onclick="closeBuzzModal()">
-            Cancel
-          </button>
+          <button class="btn btn--danger" onclick="submitBuzz()">Submit Guess</button>
+          <button class="btn btn--ghost" onclick="closeBuzzModal()">Cancel</button>
         </div>
       </div>
     </div>
 
-    <!-- ── TOAST ──────────────────────────────────────────────────────────────── -->
+    <!-- ── TOAST ──────────────────────────────────────────────────────────── -->
     <div id="toast"></div>
 
-    <!-- ── SCRIPTS ────────────────────────────────────────────────────────────── -->
+    <!-- ── SCRIPTS ────────────────────────────────────────────────────────── -->
     <script src="words.js"></script>
+    <script src="hints.js"></script>
     <script src="game.js"></script>
     <script>
       function adjustCount(delta) {
-        const input = document.getElementById("player-count");
+        const input = document.getElementById('player-count');
         let val = parseInt(input.value) + delta;
         val = Math.max(3, Math.min(12, val));
         input.value = val;
-        document.getElementById("player-count-display").textContent = val;
+        document.getElementById('player-count-display').textContent = val;
         renderPlayerInputs();
         state.players.forEach((p, i) => {
           const el = document.getElementById(`pname-${i}`);
