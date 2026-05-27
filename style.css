@@ -929,3 +929,77 @@ select.text-input {
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); }
+/* ═══════════════════════════════════════════════════════════════════════════
+   CLUE INPUT (in clue phase)
+═══════════════════════════════════════════════════════════════════════════ */
+.clue-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-dim);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  padding: 4px 6px;
+  width: 90px;
+  max-width: 110px;
+  flex-shrink: 0;
+  outline: none;
+  text-align: right;
+  font-style: italic;
+  transition: border-color 0.2s;
+  background: none;
+  -webkit-appearance: none;
+}
+.clue-input:focus {
+  border-bottom-color: var(--gold);
+}
+.clue-input::placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CLUE REPLAY (in results)
+═══════════════════════════════════════════════════════════════════════════ */
+.clue-replay-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 12px;
+  background: var(--elevated);
+  border: 1px solid var(--border-dim);
+  font-size: 0.8rem;
+}
+.clue-replay-row--imposter {
+  border-color: rgba(220,38,38,0.18);
+  background: rgba(220,38,38,0.03);
+}
+.clue-replay-name {
+  flex: 1;
+  color: var(--muted-light);
+  font-size: 0.75rem;
+}
+.clue-replay-text {
+  color: var(--cream);
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HISTORY CLUE CHIPS
+═══════════════════════════════════════════════════════════════════════════ */
+.hist-clues {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  border-top: 1px solid var(--border-dim);
+  padding-top: 8px;
+}
+.hist-clue-chip {
+  font-size: 0.68rem;
+  border: 1px solid var(--border-dim);
+  padding: 2px 8px;
+  background: var(--elevated);
+  font-style: italic;
+}
